@@ -4,13 +4,15 @@ import com.library.dto.BookDTO;
 
 import java.util.List;
 
+
 public interface BookService {
+    List<BookDTO> getAllBooks();
     BookDTO getBookById(Long id);
     BookDTO getBookByTitle(String title);
-    List<BookDTO> getAllBooks();
-    List<BookDTO> getBooksByAuthor();
+    List<BookDTO> getBooksByAuthor(String author);
+    List<BookDTO> getBookByGenre(String genre);
     BookDTO addBook (BookDTO bookDTO);
     BookDTO updateBook(Long id, BookDTO bookDTO);
-    BookDTO deleteBook(Long id);
+    void deleteBook(Long id);
 
 }

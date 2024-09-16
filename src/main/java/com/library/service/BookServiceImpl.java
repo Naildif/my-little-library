@@ -2,6 +2,7 @@ package com.library.service;
 
 import com.library.dto.BookDTO;
 import com.library.entity.Book;
+import com.library.entity.Genre;
 import com.library.exception.BookNotFoundException;
 import com.library.exception.TitleNotFoundException;
 import com.library.exception.AuthorNotFoundException;
@@ -56,12 +57,19 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookDTO> getBookByGenre(String genre) {
-        List<Book> bookGenre = bookRepository.findByGenre(genre);
-        if (bookGenre.isEmpty()) {
+        Genre bookGenre;
+        try {
+            bookGenre = Genre.valueOf(genre.toUpperCase());
+        } catch (IllegalArgumentException e) {
             throw new GenreNotFoundException("The genre " + genre
                     + " does not exist \n૮ ◞ ﻌ ◟ ა");
         }
-        return bookGenre.stream().map(this::convertEntityToDTO)
+        List<Book> booksByGenre = bookRepository.findByGenre(bookGenre);
+        if (booksByGenre.isEmpty()) {
+            throw new GenreNotFoundException("No books found for the genre " + genre
+                    +"\n૮꒰◞ ˕ ◟ ྀི꒱ა");
+        }
+        return booksByGenre.stream().map(this::convertEntityToDTO)
                 .collect(Collectors.toList());
     }
 

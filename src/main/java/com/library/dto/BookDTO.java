@@ -1,4 +1,5 @@
 package com.library.dto;
+import com.library.entity.Genre;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -12,13 +13,14 @@ public class BookDTO {
     @NotNull (message = "૮꒰◞ ˕ ◟ ྀི꒱ა \nTitle field cannot be empty.")
     @Size (min = 1, max = 100, message = "(˶˃ᆺ˂˶) \nTitle must have between 1 and 100 characters.")
     private String title;
-    private String genre;
+    @NotNull(message = "૮꒰◞ ˕ ◟ ྀི꒱ა \nPlease,choose a genre.")
+    private Genre genre;
     @NotNull (message = "૮ ◞ ﻌ ◟ ა \nPrice field cannot be empty")
     private double price;
     private LocalDate releaseDate;
 
     public BookDTO(){}
-    public BookDTO(String author, String title, String genre, double price, LocalDate releaseDate){
+    public BookDTO(String author, String title, Genre genre, double price, LocalDate releaseDate){
         this.author = author;
         this.title = title;
         this.genre = genre;
@@ -50,11 +52,11 @@ public class BookDTO {
         this.title = title;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 

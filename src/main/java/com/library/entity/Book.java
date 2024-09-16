@@ -13,13 +13,14 @@ public class Book {
     private String author;
     @Column(nullable = false)
     private String title;
-    private String genre;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
     private double price;
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
     public Book(){}
-    public Book(String author, String title, String genre, double price, LocalDate releaseDate){
+    public Book(String author, String title, Genre genre, double price, LocalDate releaseDate){
         this.author = author;
         this.title = title;
         this.genre = genre;
@@ -51,11 +52,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 

@@ -39,8 +39,8 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDTO getBookByTitle(String title) {
-        Optional<Book> book = bookRepository.findByTitle(title);
-        return book.map(this::convertEntityToDTO)
+        Optional<Book> bookTitle = bookRepository.findByTitle(title);
+        return bookTitle.map(this::convertEntityToDTO)
                 .orElseThrow(()-> new TitleNotFoundException ("Book with the title " + title
                         + " was not found \n૮ ◞ ﻌ ◟ ა"));
     }
@@ -56,15 +56,8 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<BookDTO> getBookByGenre(String genre) {
-        Genre bookGenre;
-        try {
-            bookGenre = Genre.valueOf(genre.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new GenreNotFoundException("The genre " + genre
-                    + " does not exist \n૮ ◞ ﻌ ◟ ა");
-        }
-        List<Book> booksByGenre = bookRepository.findByGenre(bookGenre);
+    public List<BookDTO> getBooksByGenre(Genre genre) {
+        List<Book> booksByGenre = bookRepository.findByGenre(genre);
         if (booksByGenre.isEmpty()) {
             throw new GenreNotFoundException("No books found for the genre " + genre
                     +"\n૮꒰◞ ˕ ◟ ྀི꒱ა");

@@ -7,15 +7,15 @@ import java.time.LocalDate;
 
 public class BookDTO {
     private Long id;
-    @NotNull (message = "૮꒰◞ ˕ ◟ ྀི꒱ა \nAuthor field cannot be empty.")
+    @NotNull (message = "(˘ŏ_ŏ)  \nAuthor field cannot be empty.")
     @Size (min = 1, max = 100, message = "(˶˃ᆺ˂˶) \nAuthor must have between 1 and 100 characters.")
     private String author;
-    @NotNull (message = "૮꒰◞ ˕ ◟ ྀི꒱ა \nTitle field cannot be empty.")
+    @NotNull (message = "(˘ŏ_ŏ) \nTitle field cannot be empty.")
     @Size (min = 1, max = 100, message = "(˶˃ᆺ˂˶) \nTitle must have between 1 and 100 characters.")
     private String title;
-    @NotNull(message = "૮꒰◞ ˕ ◟ ྀི꒱ა \nPlease,choose a genre.")
+    @NotNull(message = "(｡•́︿•̀｡) \nPlease,choose a genre.")
     private Genre genre;
-    @NotNull (message = "૮ ◞ ﻌ ◟ ა \nPrice field cannot be empty")
+    @NotNull (message = "( ˶°ㅁ°) !!\nPrice field cannot be empty")
     private double price;
     private LocalDate releaseDate;
 
